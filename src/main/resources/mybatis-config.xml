@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${datasource.mysql.driver}"/>
+                <property name="url" value="${datasource.mysql.url}"/>
+                <property name="username" value="${datasource.mysql.username}"/>
+                <property name="password" value="${datasource.mysql.password}"/>
+            </dataSource>
+        </environment>
+        <environment id="oracle">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${datasource.oracle.driver}"/>
+                <property name="url" value="${datasource.oracle.url}"/>
+                <property name="username" value="${datasource.oracle.username}"/>
+                <property name="password" value="${datasource.oracle.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--<mapper class="com.example.demo.mapper.RawMaterialMapper"/>-->
+        <mapper resource="mapper/RawMaterialMapper.xml"/>
+        <mapper resource="mapper/CutPartMapper.xml"/>
+    </mappers>
+</configuration>

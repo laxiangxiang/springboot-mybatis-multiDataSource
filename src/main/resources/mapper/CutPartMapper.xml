@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.CutPartMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.CutPart" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="UPI" property="UPI" jdbcType="VARCHAR" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="package_code" property="packageCode" jdbcType="VARCHAR" />
+    <result column="sequence" property="sequence" jdbcType="VARCHAR" />
+    <result column="C_Length" property="cLength" jdbcType="DOUBLE"/>
+    <result column="C_Width" property="cWidth" jdbcType="DOUBLE"/>
+    <result column="thk" property="thk" jdbcType="DOUBLE"/>
+    <result column="mat_order_id" property="matOrderId" jdbcType="VARCHAR"/>
+    <result column="base_line" property="baseLine" jdbcType="VARCHAR"/>
+    <result column="routing" property="routing" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, UPI, plan_no, order_id, package_code,sequence,C_Length,C_Width,thk,mat_order_id,
+    base_line,routing
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from MJ_cut_part
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM MJ_CUT_PART
+        WHERE id = #{id,jdbcType=DECIMAL}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from MJ_cut_part
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insert" parameterType="com.example.demo.entity.CutPart" >
+    insert into MJ_cut_part( UPI, plan_no, order_id, package_code,sequence,C_Length,C_Width,thk,mat_order_id,
+            base_line,routing)
+    values (#{UPI,jdbcType=VARCHAR}, #{planNo,jdbcType=VARCHAR},#{orderId,jdbcType=VARCHAR},
+            #{packageCode,jdbcType=VARCHAR}, #{sequence,jdbcType=VARCHAR},#{cLength,jdbcType=DOUBLE}
+            ,#{cWidth,jdbcType=DOUBLE},#{thk,jdbcType=DOUBLE},#{matOrderId,jdbcType=VARCHAR},#{baseLine,jdbcType=VARCHAR}
+            ,#{routing,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.CutPart" >
+    update MJ_cut_part
+    set UPI=#{UPI,jdbcType=VARCHAR},
+        plan_no=#{planNo,jdbcType=VARCHAR},
+        order_id=#{orderId,jdbcType=VARCHAR},
+        package_code=#{packageCode,jdbcType=VARCHAR},
+        sequence=#{sequence,jdbcType=VARCHAR},
+        C_Length=#{cLength,jdbcType=DOUBLE},
+        C_Width=#{cWidth,jdbcType=DOUBLE},
+        thk=#{thk,jdbcType=DOUBLE},
+        mat_order_id=#{matOrderId,jdbcType=VARCHAR},
+        base_line=#{baseLine,jdbcType=VARCHAR},
+        routing=#{routing,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+      INSERT INTO MJ_cut_part (UPI, plan_no, order_id, package_code,sequence,C_Length,C_Width,thk,mat_order_id,
+    base_line,routing)
+      VALUES
+    <foreach collection="cutPartList" item="cutPart" index="index" separator=",">
+      (
+      #{cutPart.UPI,jdbcType=VARCHAR}, #{cutPart.planNo,jdbcType=VARCHAR},#{cutPart.orderId,jdbcType=VARCHAR},
+      #{cutPart.packageCode,jdbcType=VARCHAR}, #{cutPart.sequence,jdbcType=VARCHAR},#{cutPart.cLength,jdbcType=DOUBLE}
+      ,#{cutPart.cWidth,jdbcType=DOUBLE},#{cutPart.thk,jdbcType=DOUBLE},#{cutPart.matOrderId,jdbcType=VARCHAR},#{cutPart.baseLine,jdbcType=VARCHAR}
+      ,#{cutPart.routing,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

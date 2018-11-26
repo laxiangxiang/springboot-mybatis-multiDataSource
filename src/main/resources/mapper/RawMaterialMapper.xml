@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.RawMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.RawMaterial" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="DENSITY" property="density" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTE_FRAME_QUANTITY" property="distributeFrameQuantity" jdbcType="DECIMAL" />
+    <result column="FRAME_MAX_LAYER" property="frameMaxLayer" jdbcType="DECIMAL" />
+    <result column="FRAME_MAX_QUANTITY" property="frameMaxQuantity" jdbcType="DECIMAL" />
+    <result column="FRAME_QUANTITY" property="frameQuantity" jdbcType="DECIMAL" />
+    <result column="FRAME_ROW_NUMBER" property="frameRowNumber" jdbcType="DECIMAL" />
+    <result column="LENGTH" property="length" jdbcType="VARCHAR" />
+    <result column="RAW_MATERIAL_DESC" property="rawMaterialDesc" jdbcType="VARCHAR" />
+    <result column="RAW_MATERIAL_NO" property="rawMaterialNo" jdbcType="VARCHAR" />
+    <result column="RAW_MATERIAL_SIZE" property="rawMaterialSize" jdbcType="VARCHAR" />
+    <result column="SECTION_LENGTH" property="sectionLength" jdbcType="FLOAT" />
+    <result column="SECTION_WIDTH" property="sectionWidth" jdbcType="FLOAT" />
+    <result column="UNIT_MAX_LAYER" property="unitMaxLayer" jdbcType="DECIMAL" />
+    <result column="UNIT_MAX_QUANTITY" property="unitMaxQuantity" jdbcType="DECIMAL" />
+    <result column="UNIT_ROW_NUMBER" property="unitRowNumber" jdbcType="DECIMAL" />
+    <result column="WEIGHT" property="weight" jdbcType="VARCHAR" />
+    <result column="GET_TIME" property="getTime" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <resultMap id="RawMaterialMap" type="com.example.demo.dto.RawMaterialDTO" >
+    <result column="DENSITY" property="density" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTE_FRAME_QUANTITY" property="distributeFrameQuantity" jdbcType="DECIMAL" />
+    <result column="FRAME_QUANTITY" property="frameQuantity" jdbcType="DECIMAL" />
+    <result column="LENGTH" property="length" jdbcType="VARCHAR" />
+    <result column="RAW_MATERIAL_DESC" property="rawMaterialDesc" jdbcType="VARCHAR" />
+    <result column="RAW_MATERIAL_NO" property="rawMaterialNo" jdbcType="VARCHAR" />
+    <result column="RAW_MATERIAL_SIZE" property="rawMaterialSize" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="FLOAT" />
+    <result column="SECTION_LENGTH" property="sectionLength" jdbcType="FLOAT" />
+    <result column="SECTION_WIDTH" property="sectionWidth" jdbcType="FLOAT" />
+    <result column="FRAME_MAX_QUANTITY" property="frameMaxQuantity" jdbcType="DECIMAL" />
+    <result column="UNIT_MAX_QUANTITY" property="unitMaxQuantity" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, DENSITY, DISTRIBUTE_FRAME_QUANTITY, FRAME_MAX_LAYER, FRAME_MAX_QUANTITY, FRAME_QUANTITY, 
+    FRAME_ROW_NUMBER, LENGTH, RAW_MATERIAL_DESC, RAW_MATERIAL_NO, RAW_MATERIAL_SIZE, 
+    SECTION_LENGTH, SECTION_WIDTH, UNIT_MAX_LAYER, UNIT_MAX_QUANTITY, UNIT_ROW_NUMBER, 
+    WEIGHT,GET_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from MJ_RAW_MATERIAL
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from MJ_RAW_MATERIAL
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.RawMaterial" >
+      <!--<selectKey keyProperty="P_ID" resultType="DECIMAL" order="BEFORE">-->
+          <!--select rawMaterialSEQ_DB.nextval AS P_ID from dual-->
+      <!--</selectKey>-->
+    insert into MJ_RAW_MATERIAL(ID, DENSITY, DISTRIBUTE_FRAME_QUANTITY,
+      FRAME_MAX_LAYER, FRAME_MAX_QUANTITY, FRAME_QUANTITY,
+      FRAME_ROW_NUMBER, LENGTH, RAW_MATERIAL_DESC,
+      RAW_MATERIAL_NO, RAW_MATERIAL_SIZE, SECTION_LENGTH,
+      SECTION_WIDTH, UNIT_MAX_LAYER, UNIT_MAX_QUANTITY,
+      UNIT_ROW_NUMBER, WEIGHT,GET_TIME)
+    values (rawMaterialSEQ_DB.nextval,#{density,jdbcType=VARCHAR}, #{distributeFrameQuantity,jdbcType=DECIMAL},
+      #{frameMaxLayer,jdbcType=DECIMAL}, #{frameMaxQuantity,jdbcType=DECIMAL}, #{frameQuantity,jdbcType=DECIMAL}, 
+      #{frameRowNumber,jdbcType=DECIMAL}, #{length,jdbcType=VARCHAR}, #{rawMaterialDesc,jdbcType=VARCHAR}, 
+      #{rawMaterialNo,jdbcType=VARCHAR}, #{rawMaterialSize,jdbcType=VARCHAR}, #{sectionLength,jdbcType=FLOAT}, 
+      #{sectionWidth,jdbcType=FLOAT}, #{unitMaxLayer,jdbcType=DECIMAL}, #{unitMaxQuantity,jdbcType=DECIMAL}, 
+      #{unitRowNumber,jdbcType=DECIMAL}, #{weight,jdbcType=VARCHAR},#{getTime,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.RawMaterial" >
+    update MJ_RAW_MATERIAL
+    set DENSITY = #{density,jdbcType=VARCHAR},
+      DISTRIBUTE_FRAME_QUANTITY = #{distributeFrameQuantity,jdbcType=DECIMAL},
+      FRAME_MAX_LAYER = #{frameMaxLayer,jdbcType=DECIMAL},
+      FRAME_MAX_QUANTITY = #{frameMaxQuantity,jdbcType=DECIMAL},
+      FRAME_QUANTITY = #{frameQuantity,jdbcType=DECIMAL},
+      FRAME_ROW_NUMBER = #{frameRowNumber,jdbcType=DECIMAL},
+      LENGTH = #{length,jdbcType=VARCHAR},
+      RAW_MATERIAL_DESC = #{rawMaterialDesc,jdbcType=VARCHAR},
+      RAW_MATERIAL_NO = #{rawMaterialNo,jdbcType=VARCHAR},
+      RAW_MATERIAL_SIZE = #{rawMaterialSize,jdbcType=VARCHAR},
+      SECTION_LENGTH = #{sectionLength,jdbcType=FLOAT},
+      SECTION_WIDTH = #{sectionWidth,jdbcType=FLOAT},
+      UNIT_MAX_LAYER = #{unitMaxLayer,jdbcType=DECIMAL},
+      UNIT_MAX_QUANTITY = #{unitMaxQuantity,jdbcType=DECIMAL},
+      UNIT_ROW_NUMBER = #{unitRowNumber,jdbcType=DECIMAL},
+      WEIGHT = #{weight,jdbcType=VARCHAR},
+      GET_TIME=#{getTime,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+      INSERT INTO MJ_RAW_MATERIAL (ID, DENSITY, DISTRIBUTE_FRAME_QUANTITY,
+        FRAME_MAX_LAYER, FRAME_MAX_QUANTITY, FRAME_QUANTITY,
+        FRAME_ROW_NUMBER, LENGTH, RAW_MATERIAL_DESC,
+        RAW_MATERIAL_NO, RAW_MATERIAL_SIZE, SECTION_LENGTH,
+        SECTION_WIDTH, UNIT_MAX_LAYER, UNIT_MAX_QUANTITY,
+        UNIT_ROW_NUMBER, WEIGHT,GET_TIME)
+      SELECT rawMaterialSEQ_DB.nextval,R.* FROM (
+    <foreach collection="rawMaterialList" item="rawMaterial" index="index" separator="UNION ALL">
+      SELECT
+      #{rawMaterial.density,jdbcType=VARCHAR},
+      #{rawMaterial.distributeFrameQuantity,jdbcType=DECIMAL},
+      #{rawMaterial.frameMaxLayer,jdbcType=DECIMAL}, #{rawMaterial.frameMaxQuantity,jdbcType=DECIMAL},
+      #{rawMaterial.frameQuantity,jdbcType=DECIMAL},
+      #{rawMaterial.frameRowNumber,jdbcType=DECIMAL}, #{rawMaterial.length,jdbcType=VARCHAR},
+      #{rawMaterial.rawMaterialDesc,jdbcType=VARCHAR},
+      #{rawMaterial.rawMaterialNo,jdbcType=VARCHAR}, #{rawMaterial.rawMaterialSize,jdbcType=VARCHAR},
+      #{rawMaterial.sectionLength,jdbcType=FLOAT},
+      #{rawMaterial.sectionWidth,jdbcType=FLOAT}, #{rawMaterial.unitMaxLayer,jdbcType=DECIMAL},
+      #{rawMaterial.unitMaxQuantity,jdbcType=DECIMAL},
+      #{rawMaterial.unitRowNumber,jdbcType=DECIMAL}, #{rawMaterial.weight,jdbcType=VARCHAR},
+      #{rawMaterial.getTime,jdbcType=VARCHAR}
+      FROM dual
+    </foreach>)R
+  </insert>
+
+  <select id="countByRawMaterialNo" parameterType="string" resultType="integer">
+    SELECT COUNT(*) FROM MJ_RAW_MATERIAL WHERE raw_material_no=#{rawMaterialNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findByRawMaterialNo" parameterType="string" resultMap="BaseResultMap">
+    SELECT * FROM MJ_RAW_MATERIAL WHERE raw_material_no=#{rawMaterialNo,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="batchDelete" parameterType="map">
+    DELETE FROM MJ_RAW_MATERIAL WHERE id IN
+      <foreach collection="rawMaterialList" item="rawMateril" separator="," index="index" open="(" close=")">
+        #{rawMateril.id,jdbcType=DECIMAL}
+      </foreach>
+  </delete>
+  <!--按原材料号、原材料描述查询原材料基础数据-->
+  <select id="findAllRawMaterialData" parameterType="com.example.demo.dto.RawMaterialDTO" resultMap="RawMaterialMap">
+      select * from (select rm.*,rownum rn from (SELECT RAW_MATERIAL_NO,RAW_MATERIAL_DESC,RAW_MATERIAL_SIZE,
+      LENGTH||'M' LENGTH,DENSITY||'KG/M' DENSITY,WEIGHT||'KG' WEIGHT,FRAME_QUANTITY,DISTRIBUTE_FRAME_QUANTITY,
+      section_length,section_width,frame_max_quantity,unit_max_quantity
+      FROM MJ_RAW_MATERIAL WHERE 1=1
+      <if test="rawMaterialNo != null">
+          AND RAW_MATERIAL_NO LIKE concat(concat('%',#{rawMaterialNo}),'%')
+      </if>
+      <if test="rawMaterialDesc != null">
+          AND RAW_MATERIAL_DESC LIKE concat(concat('%',#{rawMaterialDesc}),'%')
+      </if>
+      ORDER BY RAW_MATERIAL_NO) rm
+      where rownum <![CDATA[<=]]> (#{page}*#{size}))
+      where rn <![CDATA[>=]]> ((#{page}-1)*#{size}+1)
+  </select>
+    <!--原材料基础数据总记录数-->
+    <select id="findTotalCount" resultType="INTEGER" parameterType="com.example.demo.dto.RawMaterialDTO">
+        select count(*) from mj_raw_material where 1=1
+        <if test="rawMaterialNo != null">
+            AND RAW_MATERIAL_NO LIKE concat(concat('%',#{rawMaterialNo}),'%')
+        </if>
+        <if test="rawMaterialDesc != null">
+            AND RAW_MATERIAL_DESC LIKE concat(concat('%',#{rawMaterialDesc}),'%')
+        </if>
+    </select>
+</mapper>

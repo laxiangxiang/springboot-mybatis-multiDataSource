@@ -1,10 +1,12 @@
-package com.example.demo.config;
+package com.example.demo.config.mybatismultidatasourcefirstway;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.InputStream;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,8 +16,9 @@ import java.util.Properties;
 
 /**
  * Created by LXX on 2018/11/26.
+ * mybatis多数据源配置方式一
  */
-@Configuration
+//@Configuration
 public class MybatisConfig {
 
     private static final String resource = "mybatis-config.xml";

@@ -1,0 +1,7 @@
+mybatis多数据源配置两种方法：
+ 方法一在：MybatisConfig.java中配置。
+    使用多SQLSessionFactory。有一个默认的SQLSessionFactory，需要使用另一个数据源时需要指定SQLSessionFactory。
+ 方法二：使用两个配置类，配置不同的数据源指定哪些mapper是在这个数据源下的，DAO接口和映射文件在不同的目录下。
+
+
+ 方法一也可改进成类似方法二。。。。。有待改进

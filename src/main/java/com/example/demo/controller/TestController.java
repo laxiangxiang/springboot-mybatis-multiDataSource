@@ -27,12 +27,12 @@ public class TestController {
     @Autowired
     private RawMaterialMapper rawMaterialMapper;
 
-    @Autowired
-    @Qualifier(value = "oracleSqlSessionFactory")
+//    @Autowired
+//    @Qualifier(value = "oracleSqlSessionFactory")
     private SqlSessionFactory oracleSqlSessionFactory;
 
-    @Autowired
-    @Qualifier(value = "mysqlSqlSessionFactory")
+//    @Autowired
+//    @Qualifier(value = "mysqlSqlSessionFactory")
     private SqlSessionFactory mysqlSqlSessionFactory;
 
     @RequestMapping(value = "/getCutPart1",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,4 +58,6 @@ public class TestController {
         RawMaterialMapper rawMaterialMapper = sqlSession.getMapper(RawMaterialMapper.class);
         return rawMaterialMapper.selectByPrimaryKey(881l);
     }
+
+
 }

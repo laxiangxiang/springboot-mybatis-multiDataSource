@@ -31,7 +31,7 @@ public class MybatisDataSource1Config {
 
     @Bean(name = "test1SqlSessionFactory")
     @Primary
-    public SqlSessionFactory testSqlSessionFactory(@Qualifier("test1DataSource")DataSource dataSource) throws Exception{
+    public SqlSessionFactory testSqlSessionFactory(DataSource dataSource) throws Exception{
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/datasourceone/*.xml"));
@@ -40,13 +40,13 @@ public class MybatisDataSource1Config {
 
     @Bean(name = "test1TransactionManager")
     @Primary
-    public DataSourceTransactionManager testTransactionManager(@Qualifier("test1DataSource")DataSource dataSource){
+    public DataSourceTransactionManager testTransactionManager(DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean(name = "test1SqlSessionTemplate")
     @Primary
-    public SqlSessionTemplate testSqlSessionTemplate(@Qualifier("test1SqlSessionFactory")SqlSessionFactory sqlSessionFactory){
+    public SqlSessionTemplate testSqlSessionTemplate(SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }

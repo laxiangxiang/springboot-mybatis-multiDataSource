@@ -29,7 +29,7 @@ public class MybatisConfig {
 
 //////////////////把mybatis.properties文件中的属性值传入SQLSessionFactory中的两种方法///////////////////////////////////////////////////////////////////////
 //     * 方法一：使用java配置。在config.java中获取mybatis.properties文件的Properties对象，在创建SQLSessionFactory时把他作为参数传入。                         //
-//     * 方法二：在mybatis-config.xml配置文件中使用<properties><properties/>标签中的resource或者url传入。并且可以覆盖mybatis.properties中的属性。            //
+//     * 方法二：在mybatis-config.xml配置文件中使用<properties><properties/>标签中的resource或者url传入。            //
 //     * 方法三：在mybatis-config.xml配置文件中使用<properties><properties/>标签中的子标签<properties name= value= />设置属性值                          //
 //     * 优先级：                                                                                                                                //
 //          在 properties 元素体内指定的属性首先被读取。(最低)                                                                                       //

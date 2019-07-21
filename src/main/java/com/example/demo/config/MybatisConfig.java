@@ -1,4 +1,4 @@
-package com.example.demo.config.mybatismultidatasourcefirstway;
+package com.example.demo.config;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.io.Resources;
@@ -18,7 +18,7 @@ import java.util.Properties;
  * Created by LXX on 2018/11/26.
  * mybatis多数据源配置方式一
  */
-//@Configuration
+@Configuration
 public class MybatisConfig {
 
     private static final String resource = "mybatis-config.xml";
@@ -45,16 +45,26 @@ public class MybatisConfig {
             e.printStackTrace();
         }
     }
-    @Bean(name = "mysqlSqlSessionFactory")
-    public SqlSessionFactory getMysqlSqlSessionFactory() throws IOException{
+    @Bean(name = "mysql1SqlSessionFactory")
+    public SqlSessionFactory getMysql1SqlSessionFactory() throws IOException{
         InputStream inputStream = Resources.getResourceAsStream(resource);
         //方法一
-//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"mysql",properties);
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"mysql1",properties);
         //方法二
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"mysql");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"mysql1");
         return sqlSessionFactory;
     }
 
+    @Bean(name = "mysql2SqlSessionFactory")
+    public SqlSessionFactory getMysql2SqlSessionFactory() throws IOException{
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        //方法一
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"mysql2",properties);
+        //方法二
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"mysql2");
+        return sqlSessionFactory;
+    }
+    
     @Bean(name = "oracleSqlSessionFactory")
     @Primary//如果没有使用@Qualify注解指定使用哪一个，优先使用被@Primary注解的bean
     public SqlSessionFactory getOracleSqlSessionFactory() throws IOException{

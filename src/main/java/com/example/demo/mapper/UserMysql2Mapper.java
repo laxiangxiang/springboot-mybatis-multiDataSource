@@ -1,4 +1,4 @@
-package com.example.demo.mapper.datasourcetwo;
+package com.example.demo.mapper;
 
 import com.example.demo.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by LXX on 2018/11/28.
  */
 @Mapper
-public interface User2Mapper {
+public interface UserMysql2Mapper {
 
     List<UserEntity> getAll();
 

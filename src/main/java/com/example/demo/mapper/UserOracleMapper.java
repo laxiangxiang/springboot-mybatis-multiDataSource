@@ -1,4 +1,4 @@
-package com.example.demo.mapper.datasourceone;
+package com.example.demo.mapper;
 
 import com.example.demo.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by LXX on 2018/11/28.
  */
 @Mapper
-public interface User1Mapper {
+public interface UserOracleMapper {
 
     List<UserEntity> getAll();
 
